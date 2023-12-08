@@ -11,6 +11,7 @@
     "type-check": "vue-tsc --build --force"
   },
   "dependencies": {
+    "ant-design-vue": "^4.0.7",
     "vue": "^3.3.10"
   },
   "devDependencies": {

@@ -12,12 +12,11 @@ import { UserType, UsersInfoType } from '../types/usersInfo.type';
 import { StatusType, StatusesInfoType } from '../types/statusesInfo.type';
 import { DealsInfoType, LeadType } from '../types/dealsInfo.type';
 import { makeMapFromArray } from '../utils';
-import * as dateFns from 'date-fns';
 
 const client_secret =
   'QP8NdpsS4BltMxFVGmxyQgyvczyZuJb9JuyfkaCAKzHE6sxfvEwaCFUB2Y67wHps';
 
-// const integrationId = '60cedfe0-be3c-4644-91ab-11570a1459cb';
+const integrationId = '60cedfe0-be3c-4644-91ab-11570a1459cb';
 
 @Injectable()
 export class AmoCrmService {
@@ -53,8 +52,15 @@ export class AmoCrmService {
       const usersMap = makeMapFromArray(users);
 
       return deals.map((el) => {
-        const { name, id, created_by, price, status_id, responsible_user_id } =
-          el;
+        const {
+          name,
+          id,
+          created_by,
+          price,
+          status_id,
+          responsible_user_id,
+          created_at,
+        } = el;
         return {
           id,
           name,
@@ -62,6 +68,7 @@ export class AmoCrmService {
           creator: usersMap.get(created_by),
           responsible_user: usersMap.get(responsible_user_id),
           status: statusesMap.get(status_id),
+          created_at,
         };
       });
     } catch (error) {
