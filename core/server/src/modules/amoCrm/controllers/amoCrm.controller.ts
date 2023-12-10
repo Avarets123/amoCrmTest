@@ -1,4 +1,11 @@
-import { Controller, Get, HttpCode, HttpStatus, Query } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  HttpCode,
+  HttpStatus,
+  Query,
+  Redirect,
+} from '@nestjs/common';
 import { RedirectQueryDto } from '../dto/redirectQuery.dto';
 import { AmoCrmService } from '../services/amoCrm.service';
 
@@ -6,7 +13,7 @@ import { AmoCrmService } from '../services/amoCrm.service';
 export class AmoCrmController {
   constructor(private readonly amoCrmService: AmoCrmService) {}
 
-  @HttpCode(HttpStatus.NO_CONTENT)
+  @Redirect('http://localhost:8080', HttpStatus.PERMANENT_REDIRECT)
   @Get('tokens')
   async receiveTokens(@Query() query: RedirectQueryDto) {
     await this.amoCrmService.receiveTokens(query);

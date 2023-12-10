@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { AmoCrmProvider } from '../infrastructure/amoCrm.provider';
 import { RedirectQueryDto } from '../dto/redirectQuery.dto';
 import {
@@ -79,10 +79,8 @@ export class AmoCrmService {
         return this.getAllInfo();
       }
 
-      console.log(error);
       console.log('Что-то не так!');
-
-      return null;
+      throw new BadRequestException(error);
     }
   }
 

@@ -39,7 +39,7 @@ export class AmoCrmProvider implements IAmoCrmProvider {
     } catch (error) {
       console.dir(error);
 
-      console.log('Что-то вышло из под контроля!');
+      console.log('Что-то не так!');
       throw new BadRequestException(error.response.data);
     }
   }
