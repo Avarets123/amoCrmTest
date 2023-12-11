@@ -68,3 +68,5 @@ lerna-debug.log*
 
 
 *.env
+
+redis-data

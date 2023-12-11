@@ -16,8 +16,6 @@ import { makeMapFromArray } from '../utils';
 const client_secret =
   'QP8NdpsS4BltMxFVGmxyQgyvczyZuJb9JuyfkaCAKzHE6sxfvEwaCFUB2Y67wHps';
 
-const integrationId = '60cedfe0-be3c-4644-91ab-11570a1459cb';
-
 @Injectable()
 export class AmoCrmService {
   constructor(

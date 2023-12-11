@@ -1,0 +1,28 @@
+version: '3.5'
+services:
+  amo_front:
+    container_name: amo_front
+    build: ../core/front
+    restart: unless-stopped
+    ports:
+      - 8080:8080
+    depends_on:
+      - amo_server
+  amo_server:
+    container_name: amo_server
+    build: ../core/server
+    restart: unless-stopped
+    environment:
+      - REDIS_HOST=amo_redis
+    ports:
+      - 4000:4000
+    depends_on:
+      - amo_redis
+  amo_redis:
+    container_name: amo_redis
+    image: redis:7.2.2
+    restart: unless-stopped
+    volumes:
+      - ./redis-data:/data
+    expose:
+      - 6379

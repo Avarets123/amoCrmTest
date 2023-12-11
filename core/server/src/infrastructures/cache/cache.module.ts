@@ -13,7 +13,6 @@ import { ConfigService } from '@nestjs/config';
         isGlobal: true,
         store: redisStore.create({
           host: config.get('REDIS_HOST'),
-          port: +config.get('REDIS_PORT'),
         }),
       }),
     }),
