@@ -17,23 +17,4 @@ export class CacheService {
   async del(key: string): Promise<void> {
     await this.redis.del(key);
   }
-
-  async getAndSetCache<T>(
-    key: string,
-    cb: () => Promise<T>,
-    resetCache = false,
-    ttl?: number,
-  ): Promise<T> {
-    const cache = await this.get(key);
-
-    if (cache && !resetCache) return cache as T;
-
-    const newCache = await cb();
-
-    const day = 1000 * 60 * 60 * 24;
-
-    await this.set(key, newCache, ttl || day);
-
-    return newCache as T;
-  }
 }
